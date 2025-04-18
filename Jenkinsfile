@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_USER = "haingyen"
         DOCKER_HUB_REPO = "${DOCKER_HUB_USER}/myrepo"
-        DOCKER_IMAGE_TAG = "latest"
+        DOCKER_IMAGE_TAG = "1.0.0"
     }
     
     stages {
@@ -59,22 +59,22 @@ pipeline {
     }
     
     post {
-        always {
-            // Clean up workspace
-            deleteDir()
+        // always {
+        //     // Clean up workspace
+        //     deleteDir()
             
-            // Xóa image local để tiết kiệm dung lượng
-            script {
-                try {
-                    sh "docker rmi ${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG}"
-                    if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') {
-                        sh "docker rmi ${DOCKER_HUB_REPO}:${env.BUILD_NUMBER}"
-                    }
-                } catch (e) {
-                    echo "Failed to remove images: ${e}"
-                }
-            }
-        }
+        //     // Xóa image local để tiết kiệm dung lượng
+        //     script {
+        //         try {
+        //             sh "docker rmi ${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG}"
+        //             if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') {
+        //                 sh "docker rmi ${DOCKER_HUB_REPO}:${env.BUILD_NUMBER}"
+        //             }
+        //         } catch (e) {
+        //             echo "Failed to remove images: ${e}"
+        //         }
+        //     }
+        // }
         success {
             slackSend(
                 channel: '#deployments',
