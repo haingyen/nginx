@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label "ec2-agent"
+    }
     
     environment {
         DOCKER_HUB_USER = "haingyen"
@@ -8,11 +10,11 @@ pipeline {
     }
     
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/haingyen/nginx.git'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         git branch: 'main', url: 'https://github.com/haingyen/nginx.git'
+        //     }
+        // }
         
         stage('Build Docker Image') {
             steps {
