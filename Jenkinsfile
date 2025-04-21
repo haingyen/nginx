@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Build image từ Dockerfile
-                    sh "docker build -t ${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG} ."
+                    sh "sudo docker build -t ${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG} ."
                     
                     // Tag thêm nếu cần
                     // sh "docker tag ${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG} ${DOCKER_HUB_REPO}:${env.BUILD_NUMBER}"
