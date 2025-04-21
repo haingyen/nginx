@@ -6,7 +6,7 @@ pipeline {
     environment {
         DOCKER_HUB_USER = "haingyen"
         DOCKER_HUB_REPO = "${DOCKER_HUB_USER}/myrepo"
-        DOCKER_IMAGE_TAG = "3.0.0"
+        DOCKER_IMAGE_TAG = "4.0.0"
     }
     
     stages {
@@ -23,7 +23,7 @@ pipeline {
                     sh "docker build -t ${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG} ."
                     
                     // Tag thêm nếu cần
-                    sh "docker tag ${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG} ${DOCKER_HUB_REPO}:${env.BUILD_NUMBER}"
+                    // sh "docker tag ${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG} ${DOCKER_HUB_REPO}:${env.BUILD_NUMBER}"
                 }
             }
         }
