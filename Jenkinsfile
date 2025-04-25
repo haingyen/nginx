@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_USER = "haingyen"
         DOCKER_HUB_REPO = "${DOCKER_HUB_USER}/myrepo"
-        DOCKER_IMAGE_TAG = "4.0.0"
+        DOCKER_IMAGE_TAG = "5.0.0"
     }
     
     stages {
